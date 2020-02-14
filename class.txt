@@ -1,0 +1,45 @@
+90 rotate name laser
+Mover c# add to side
+
+
+public class Mover : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public float speed = 20;
+    private Rigidbody2D rBody;
+    void Start()
+    {
+        rBody = GetComponent<Rigidbody2D>();
+        rBody.velocity = new Vector2(speed, 0);
+    }
+}
+
+
+
+add rigidbody 2d
+prefabs folder add laser
+
+create empty game object in hirarchy rename it as Laser Spawn -----parentchild
+open player controller
+
+under monobehaviour
+public GameObject laser;
+public Transform laserSpawn;
+public float fireRateDelay = 0.25f;
+private float timer=0;
+
+
+void Update()
+    {
+        if(Input.GetAxis("Fire1") > 0 && timer > fireRateDelay)
+        {
+            GameObject gObj = Instantiate(laser, laserSpawn.transform.position, laserSpawn.transform.rotation);
+            gObj.transform.Rotate(0, 0, -90);
+            timer = 0;
+        }
+
+        timer += Time.deltaTime;
+
+
+
+
